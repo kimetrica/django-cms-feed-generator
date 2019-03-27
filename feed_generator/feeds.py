@@ -63,9 +63,8 @@ class RSSFeed(Feed):
         return item.get_absolute_url()
 
     def item_pubdate(self, item):
-        #Page publication date
-        return item.changed_by +" updated "+ item.get_page_title +" on "+ item.changed_date
-        # return "%s updated %s on %s " % (item.changed_by, item.get_page_title, )
+        #Page publication date       
+        return "%s updated %s " % (item.changed_by, item.get_page_title, )
     
     def item_extra_kwargs(self, obj):
         """
