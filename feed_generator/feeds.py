@@ -52,11 +52,11 @@ class RSSFeed(Feed):
     def item_title(self, item):
         # SEO page title or basic title
         title = item.get_page_title() or item.get_title()
-        return 'page title'
+        return title[:60] if title else ''
 
     def item_description(self, item):
         # SEO page description
-        return item.changed_by if item.changed_by else ''
+        return item.get_meta_description()[:400] if item.get_meta_description() else ''
 
     def item_link(self, item):
         #Page url
@@ -64,7 +64,7 @@ class RSSFeed(Feed):
 
     def item_pubdate(self, item):
         #Page publication date
-        return item.publication_date
+        return "%s updated %s on %s " % item.changed_by, item.get_page_title, item.changed_date
     
     def item_extra_kwargs(self, obj):
         """
