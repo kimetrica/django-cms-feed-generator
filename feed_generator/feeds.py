@@ -56,7 +56,7 @@ class RSSFeed(Feed):
 
     def item_description(self, item):
         # SEO page description
-        return item.get_meta_description()[:400] if item.get_meta_description() else ''
+        return item.changed_by if item.changed_by else ''
 
     def item_link(self, item):
         #Page url
