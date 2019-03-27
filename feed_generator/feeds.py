@@ -52,7 +52,7 @@ class RSSFeed(Feed):
     def item_title(self, item):
         # SEO page title or basic title
         title = item.get_page_title() or item.get_title()
-        return 'page title'
+        return title[:60] if title else ''
     
     def item_description(self, item):
         # SEO page description
