@@ -56,15 +56,17 @@ class RSSFeed(Feed):
 
     def item_description(self, item):
         # SEO page description
-        return item.get_meta_description()[:400] if item.get_meta_description() else ''
+        return "%s updated %s" % (item.changed_by, item.get_page_title())
+        # return item.get_meta_description()[:400] if item.get_meta_description() else ''
 
     def item_link(self, item):
         #Page url
         return item.get_absolute_url()
 
     def item_pubdate(self, item):
-        #Page publication date       
-        return "%s updated %s " % (item.changed_by, item.get_page_title, )
+        #Page publication date
+        pass
+        # return item.publication_date        
     
     def item_extra_kwargs(self, obj):
         """
