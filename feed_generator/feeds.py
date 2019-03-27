@@ -56,7 +56,7 @@ class RSSFeed(Feed):
 
     def item_description(self, item):
         # SEO page description
-        return "%s updated %s" % (item.changed_by, item.get_page_title())
+        return "Updated by %s on %s" % (item.changed_by, item.changed_date)
         # return item.get_meta_description()[:400] if item.get_meta_description() else ''
 
     def item_link(self, item):
