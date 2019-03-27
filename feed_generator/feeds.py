@@ -4,6 +4,7 @@ from django.contrib.sites.models import Site
 from django.contrib.syndication.views import Feed
 from django.utils.feedgenerator import Rss201rev2Feed
 from cms.models.pagemodel import Page
+from cms.models import Title
 from feed_generator.models import PageRSSFeed
 from feed_generator.settings import exclude_keyword, feed_limit
 
@@ -46,7 +47,7 @@ class RSSFeed(Feed):
     def items(self):
         site = Site.objects.get_current()
         feed_pages = Page.objects.published(site=site).order_by('-publication_date')
-        return [feed_page for feed_page in feed_pages if _page_in_rss(feed_page)][:feed_limit]
+        return [feed_page for feed_page in feed_pages if _page_in_rss(feed_page) and feed_page.publisher_is_draft == False][:feed_limit]
 
     def item_title(self, item):
         # SEO page title or basic title
